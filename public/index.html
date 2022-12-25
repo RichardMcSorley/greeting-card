@@ -105,7 +105,7 @@
             justify-items: center;
             align-items: flex-end;
             height: 100%;
-            padding-bottom: 2rem;
+            padding-bottom: 3rem;
             max-width: 85%;
             margin-left: auto;
             margin-right: auto;
@@ -324,24 +324,31 @@
     <audio id="music" class="hidden" loop>
         <source src="music.mp3" type="audio/mp3">
     </audio>
-    <div id="play" style="display:flex;justify-content: center;align-items: center; height: 100vh;">
-        <h1>Tap to Play</h1>
+    <div id="play" style="display:flex;justify-content: center;align-items: center; height: 100vh; flex-direction: column;">
+        <h1 style="font-size: 4rem;">To: <span id="to-message"></span></h1><br/>
+        <h1 style="font-size: 4rem;">Tap to Play</h1>
     </div>
     <div class="card hidden" id="card">
         <div class="inside">
-            <p style="font-size: 4rem;border-bottom: 10px dotted white;">Merry Christmas</p>
-            <p style="font-size: 1rem;padding-top:2rem;" id="back-message">Love, Doodle</p>
+            <p style="font-size: 4rem;">Merry Christmas</p>
+            <p style="font-size: xx-large;padding-top:2rem;" id="back-message">Love, Doodle</p>
 
         </div>
 
         <div class="outside">
             <div class="front">
+                <p style="
+    position: absolute;
+    top: -2rem;
+    font-size: 1.5rem;
+    right: 0;
+">Tap to Open</p>
                 <div class="front-message">
-                    <p>To: <span id="front-message">Mom & Dad</span><br /><br />I hope you have a very...</p>
+                    <p style="font-size: 1.5rem;">I hope you have a very...</p>
                 </div>
 
             </div>
-            <script> document.getElementById('front-message').innerHTML = new URLSearchParams(location.search).get('to') || '' </script>
+            <script> document.getElementById('to-message').innerHTML = new URLSearchParams(location.search).get('to') || '' </script>
             <script>
                 let firstRun = false;
                 document.body.addEventListener('click', () => {
