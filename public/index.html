@@ -92,7 +92,7 @@
             padding: 2rem 2rem;
             box-shadow: 25px 25px 35px rgba(0,0,0,0.3);
         }
-        #front-message {
+        .front-message {
             display: flex;
     justify-content: center;
     justify-items: center;
@@ -114,7 +114,7 @@
 </div>    
 <div class="outside">
     <div class="front">
-        <p>To: <span id="front-message">Mom & Dad</span></p><br/><br/><p>I hope you have a very...</p>
+        <p class="front-message">To: <span id="front-message">Mom & Dad</span></p><br/><br/><p>I hope you have a very...</p>
     </div>
     <script> document.getElementById('front-message').innerHTML= new URLSearchParams(location.search).get('to') || '' </script>
     <div class="back"></div>
