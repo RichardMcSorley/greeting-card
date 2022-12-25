@@ -114,8 +114,9 @@
 </div>    
 <div class="outside">
     <div class="front">
-        <p id="front-message">To: Mom & Dad<br/><br/>  I hope you have a very...</p>
+        <p>To: <span id="front-message">Mom & Dad</span></p><br/><br/><p>I hope you have a very...</p>
     </div>
+    <script> document.getElementById('front-message').innerHTML= new URLSearchParams(location.search).get('to') || '' </script>
     <div class="back"></div>
 </div>
 </div>
