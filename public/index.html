@@ -103,6 +103,189 @@
     margin-left: auto;
     margin-right: auto;
         }
+#loading-text {
+  position: fixed;
+  bottom: 50%;
+  left: calc(50% - 100px);
+  color: #d33144;
+  font-weight: 600;
+}
+
+#candy {
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  opacity: 0;
+  margin: calc(50vh - 150px) auto 0 auto;
+  width: 100px;
+  height: 300px;
+  border-radius: 100px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  background-color: #000022;
+  box-shadow: 40px 20px 15px -30px rgba(255, 0, 0, 0.1);
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  -webkit-animation: PARTY 8s cubic-bezier(0.87, -0.41, 0.19, 1.44) infinite;
+          animation: PARTY 8s cubic-bezier(0.87, -0.41, 0.19, 1.44) infinite;
+}
+
+#candy-loader {
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  box-shadow: 0px 0px 10px rgba(255, 50, 0, 0.8) inset;
+  background: #D33144;
+  background: -webkit-repeating-linear-gradient(45deg, #FFFFEE, #FFFFEE 15px, #D33144 15px, #D33144 30px);
+  background: repeating-linear-gradient(45deg, #FFFFEE, #FFFFEE 15px, #D33144 15px, #D33144 30px);
+  -webkit-animation: load 8s ease-in infinite;
+          animation: load 8s ease-in infinite;
+}
+#candy-loader::after {
+  content: "";
+  background-color: #000022;
+  width: 50px;
+  height: 270px;
+  border-radius: 50px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  -webkit-animation: color 8s linear infinite;
+          animation: color 8s linear infinite;
+}
+#candy-loader::before {
+  content: "";
+  background-color: #000022;
+  width: 25px;
+  height: 210px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  -webkit-animation: color 8s linear infinite;
+          animation: color 8s linear infinite;
+}
+
+@-webkit-keyframes load {
+  0% {
+    height: 0%;
+  }
+  50% {
+    height: 100%;
+  }
+}
+
+@keyframes load {
+  0% {
+    height: 0%;
+  }
+  50% {
+    height: 100%;
+  }
+}
+@-webkit-keyframes PARTY {
+  5% {
+    opacity: 1;
+  }
+  50% {
+    -webkit-transform: rotate(90deg) scale(1);
+            transform: rotate(90deg) scale(1);
+  }
+  60% {
+    -webkit-transform: rotate(-10deg) scale(1);
+            transform: rotate(-10deg) scale(1);
+  }
+  70% {
+    -webkit-transform: rotate(20deg) scale(1);
+            transform: rotate(20deg) scale(1);
+  }
+  80% {
+    -webkit-transform: rotate(-10deg) scale(1);
+            transform: rotate(-10deg) scale(1);
+  }
+  90% {
+    -webkit-transform: rotate(30deg) scale(1);
+            transform: rotate(30deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: rotate(-180deg) scale(0);
+            transform: rotate(-180deg) scale(0);
+    opacity: 0;
+  }
+}
+@keyframes PARTY {
+  5% {
+    opacity: 1;
+  }
+  50% {
+    -webkit-transform: rotate(90deg) scale(1);
+            transform: rotate(90deg) scale(1);
+  }
+  60% {
+    -webkit-transform: rotate(-10deg) scale(1);
+            transform: rotate(-10deg) scale(1);
+  }
+  70% {
+    -webkit-transform: rotate(20deg) scale(1);
+            transform: rotate(20deg) scale(1);
+  }
+  80% {
+    -webkit-transform: rotate(-10deg) scale(1);
+            transform: rotate(-10deg) scale(1);
+  }
+  90% {
+    -webkit-transform: rotate(30deg) scale(1);
+            transform: rotate(30deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: rotate(-180deg) scale(0);
+            transform: rotate(-180deg) scale(0);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes color {
+  55% {
+    background-color: #000022;
+  }
+  57% {
+    background-color: #000022;
+  }
+  95% {
+    background-color: #000022;
+  }
+}
+@keyframes color {
+  55% {
+    background-color: #000022;
+  }
+  57% {
+    background-color: #000022;
+  }
+  95% {
+    background-color: #000022;
+  }
+}
+
+.hidden {
+    opacity: 0;
+}
+
      </style>
 </head>
 <body>
@@ -110,7 +293,7 @@
 <div id='candy'>
   <div id='candy-loader'></div>
 </div>
-<div class="card">
+<div class="card hidden" id="card">
 <div class="inside">
     <p style="font-size: 4rem;border-bottom: 10px dotted white;">Merry Christmas</p>
     <p style="font-size: 1rem;padding-top:2rem;" id="back-message">Love, Doodle</p>
@@ -124,6 +307,11 @@
        
     </div>
     <script> document.getElementById('front-message').innerHTML= new URLSearchParams(location.search).get('to') || '' </script>
+    <script> setTimeout(()=>{
+        document.getElementById('candy')?.classList.add('hidden')
+        document.getElementById('candy-loader')?.classList.add('hidden')
+        document.getElementById('card')?.classList.remove('hidden')
+    }, 8_000)</script>
     <div class="back"></div>
 </div>
 </div>
