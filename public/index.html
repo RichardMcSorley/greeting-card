@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Greeting Card</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
-     <style>
+    <style>
         *,
         *:before,
-        *:after{
+        *:after {
             box-sizing: border-box;
             padding: 0;
             margin: 0;
         }
-        body{
+
+        body {
             background-color: #000022;
             font-family: 'Parisienne', cursive;
             color: white;
         }
-        .card{
+
+        .card {
             height: 400px;
             width: 570px;
             position: absolute;
@@ -30,35 +33,41 @@
             transition: 2s;
             scale: 2;
             -webkit-perspective: 1200px;
-                perspective: 1200px;
-                transform: translateX(-10%);
+            perspective: 1200px;
+            transform: translateX(-10%);
         }
-        .card:hover{
+
+        .card-hover {
             transform: rotate(-5deg) translateX(-15%);
         }
-        .card:hover .outside{
+
+        .card-hover .outside {
             transform: rotateY(-130deg);
         }
-        .outside{
+
+        .outside {
             height: 100%;
             width: 50%;
             position: absolute;
             left: 50.1%;
             -webkit-transform-style: preserve-3d;
-                transform-style: preserve-3d;
+            transform-style: preserve-3d;
             transition: 2s;
             transform-origin: left;
         }
-        .front,.back{
+
+        .front,
+        .back {
             height: 100%;
             width: 100%;
-            position: absolute;  
+            position: absolute;
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
             /*hide backface in firefox*/
-            transform: rotateX(0deg);   
+            transform: rotateX(0deg);
         }
-        .front{
+
+        .front {
             background-color: #BE0F04;
             z-index: 1;
             background: url('front.png') #BE0F04;
@@ -66,254 +75,306 @@
             background-size: contain;
             background-position: -200px 0 0 0;
         }
-     
-        .back{
-            background: linear-gradient(
-                to right,
-                #BE0F04 50%,
-                #7d0b03
-            );
+
+        .back {
+            background: linear-gradient(to right,
+                    #BE0F04 50%,
+                    #7d0b03);
             transform: rotateY(180deg);
         }
-        .inside{
+
+        .inside {
             height: 100%;
             width: 50%;
             position: absolute;
             left: 50%;
-            background: linear-gradient(
-                to left,
-                #BE0F04 50%,
-                #7d0b03
-            );
-            
+            background: linear-gradient(to left,
+                    #BE0F04 50%,
+                    #7d0b03);
+
 
             font-size: 70px;
             text-align: center;
             padding: 2rem 2rem;
-            box-shadow: 25px 25px 35px rgba(0,0,0,0.3);
+            box-shadow: 25px 25px 35px rgba(0, 0, 0, 0.3);
         }
+
         .front-message {
             display: flex;
-    justify-content: center;
-    justify-items: center;
-    align-items: flex-end;
-    height: 100%;
-    padding-bottom: 2rem;
-    max-width: 85%;
-    margin-left: auto;
-    margin-right: auto;
+            justify-content: center;
+            justify-items: center;
+            align-items: flex-end;
+            height: 100%;
+            padding-bottom: 2rem;
+            max-width: 85%;
+            margin-left: auto;
+            margin-right: auto;
         }
-#loading-text {
-  position: fixed;
-  bottom: 50%;
-  left: calc(50% - 100px);
-  color: #d33144;
-  font-weight: 600;
-}
 
-#candy {
-  overflow: hidden;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  opacity: 0;
-  margin: calc(50vh - 150px) auto 0 auto;
-  width: 100px;
-  height: 300px;
-  border-radius: 100px;
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
-  background-color: #000022;
-  box-shadow: 40px 20px 15px -30px rgba(255, 0, 0, 0.1);
-  -webkit-transform: rotate(90deg);
-          transform: rotate(90deg);
-  -webkit-animation: PARTY 8s cubic-bezier(0.87, -0.41, 0.19, 1.44) infinite;
-          animation: PARTY 8s cubic-bezier(0.87, -0.41, 0.19, 1.44) infinite;
-}
+        #loading-text {
+            position: fixed;
+            bottom: 50%;
+            left: calc(50% - 100px);
+            color: #d33144;
+            font-weight: 600;
+        }
 
-#candy-loader {
-  height: 100%;
-  width: 100%;
-  z-index: 1;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-item-align: end;
-      align-self: flex-end;
-  box-shadow: 0px 0px 10px rgba(255, 50, 0, 0.8) inset;
-  background: #D33144;
-  background: -webkit-repeating-linear-gradient(45deg, #FFFFEE, #FFFFEE 15px, #D33144 15px, #D33144 30px);
-  background: repeating-linear-gradient(45deg, #FFFFEE, #FFFFEE 15px, #D33144 15px, #D33144 30px);
-  -webkit-animation: load 8s ease-in;
-          animation: load 8s ease-in;
-}
-#candy-loader::after {
-  content: "";
-  background-color: #000022;
-  width: 50px;
-  height: 270px;
-  border-radius: 50px;
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-item-align: end;
-      align-self: flex-end;
-  -webkit-animation: color 8s linear;
-          animation: color 8s linear;
-}
-#candy-loader::before {
-  content: "";
-  background-color: #000022;
-  width: 25px;
-  height: 210px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-item-align: end;
-      align-self: flex-end;
-  -webkit-animation: color 8s linear;
-          animation: color 8s linear;
-}
+        #candy {
+            overflow: hidden;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            opacity: 0;
+            margin: calc(50vh - 150px) auto 0 auto;
+            width: 100px;
+            height: 300px;
+            border-radius: 100px;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+            background-color: #000022;
+            box-shadow: 40px 20px 15px -30px rgba(255, 0, 0, 0.1);
+            -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+            -webkit-animation: PARTY 8s cubic-bezier(0.87, -0.41, 0.19, 1.44) infinite;
+            animation: PARTY 8s cubic-bezier(0.87, -0.41, 0.19, 1.44) infinite;
+        }
 
-@-webkit-keyframes load {
-  0% {
-    height: 0%;
-  }
-  50% {
-    height: 100%;
-  }
-}
+        #candy-loader {
+            height: 100%;
+            width: 100%;
+            z-index: 1;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -ms-flex-item-align: end;
+            align-self: flex-end;
+            box-shadow: 0px 0px 10px rgba(255, 50, 0, 0.8) inset;
+            background: #D33144;
+            background: -webkit-repeating-linear-gradient(45deg, #FFFFEE, #FFFFEE 15px, #D33144 15px, #D33144 30px);
+            background: repeating-linear-gradient(45deg, #FFFFEE, #FFFFEE 15px, #D33144 15px, #D33144 30px);
+            -webkit-animation: load 8s ease-in;
+            animation: load 8s ease-in;
+        }
 
-@keyframes load {
-  0% {
-    height: 0%;
-  }
-  50% {
-    height: 100%;
-  }
-}
-@-webkit-keyframes PARTY {
-  5% {
-    opacity: 1;
-  }
-  50% {
-    -webkit-transform: rotate(90deg) scale(1);
-            transform: rotate(90deg) scale(1);
-  }
-  60% {
-    -webkit-transform: rotate(-10deg) scale(1);
-            transform: rotate(-10deg) scale(1);
-  }
-  70% {
-    -webkit-transform: rotate(20deg) scale(1);
-            transform: rotate(20deg) scale(1);
-  }
-  80% {
-    -webkit-transform: rotate(-10deg) scale(1);
-            transform: rotate(-10deg) scale(1);
-  }
-  90% {
-    -webkit-transform: rotate(30deg) scale(1);
-            transform: rotate(30deg) scale(1);
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: rotate(-180deg) scale(0);
-            transform: rotate(-180deg) scale(0);
-    opacity: 0;
-  }
-}
-@keyframes PARTY {
-  5% {
-    opacity: 1;
-  }
-  50% {
-    -webkit-transform: rotate(90deg) scale(1);
-            transform: rotate(90deg) scale(1);
-  }
-  60% {
-    -webkit-transform: rotate(-10deg) scale(1);
-            transform: rotate(-10deg) scale(1);
-  }
-  70% {
-    -webkit-transform: rotate(20deg) scale(1);
-            transform: rotate(20deg) scale(1);
-  }
-  80% {
-    -webkit-transform: rotate(-10deg) scale(1);
-            transform: rotate(-10deg) scale(1);
-  }
-  90% {
-    -webkit-transform: rotate(30deg) scale(1);
-            transform: rotate(30deg) scale(1);
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: rotate(-180deg) scale(0);
-            transform: rotate(-180deg) scale(0);
-    opacity: 0;
-  }
-}
-@-webkit-keyframes color {
-  55% {
-    background-color: #000022;
-  }
-  57% {
-    background-color: #000022;
-  }
-  95% {
-    background-color: #000022;
-  }
-}
-@keyframes color {
-  55% {
-    background-color: #000022;
-  }
-  57% {
-    background-color: #000022;
-  }
-  95% {
-    background-color: #000022;
-  }
-}
+        #candy-loader::after {
+            content: "";
+            background-color: #000022;
+            width: 50px;
+            height: 270px;
+            border-radius: 50px;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-item-align: end;
+            align-self: flex-end;
+            -webkit-animation: color 8s linear;
+            animation: color 8s linear;
+        }
 
-.hidden {
-    opacity: 0;
-}
+        #candy-loader::before {
+            content: "";
+            background-color: #000022;
+            width: 25px;
+            height: 210px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-item-align: end;
+            align-self: flex-end;
+            -webkit-animation: color 8s linear;
+            animation: color 8s linear;
+        }
 
-     </style>
+        @-webkit-keyframes load {
+            0% {
+                height: 0%;
+            }
+
+            50% {
+                height: 100%;
+            }
+        }
+
+        @keyframes load {
+            0% {
+                height: 0%;
+            }
+
+            50% {
+                height: 100%;
+            }
+        }
+
+        @-webkit-keyframes PARTY {
+            5% {
+                opacity: 1;
+            }
+
+            50% {
+                -webkit-transform: rotate(90deg) scale(1);
+                transform: rotate(90deg) scale(1);
+            }
+
+            60% {
+                -webkit-transform: rotate(-10deg) scale(1);
+                transform: rotate(-10deg) scale(1);
+            }
+
+            70% {
+                -webkit-transform: rotate(20deg) scale(1);
+                transform: rotate(20deg) scale(1);
+            }
+
+            80% {
+                -webkit-transform: rotate(-10deg) scale(1);
+                transform: rotate(-10deg) scale(1);
+            }
+
+            90% {
+                -webkit-transform: rotate(30deg) scale(1);
+                transform: rotate(30deg) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                -webkit-transform: rotate(-180deg) scale(0);
+                transform: rotate(-180deg) scale(0);
+                opacity: 0;
+            }
+        }
+
+        @keyframes PARTY {
+            5% {
+                opacity: 1;
+            }
+
+            50% {
+                -webkit-transform: rotate(90deg) scale(1);
+                transform: rotate(90deg) scale(1);
+            }
+
+            60% {
+                -webkit-transform: rotate(-10deg) scale(1);
+                transform: rotate(-10deg) scale(1);
+            }
+
+            70% {
+                -webkit-transform: rotate(20deg) scale(1);
+                transform: rotate(20deg) scale(1);
+            }
+
+            80% {
+                -webkit-transform: rotate(-10deg) scale(1);
+                transform: rotate(-10deg) scale(1);
+            }
+
+            90% {
+                -webkit-transform: rotate(30deg) scale(1);
+                transform: rotate(30deg) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                -webkit-transform: rotate(-180deg) scale(0);
+                transform: rotate(-180deg) scale(0);
+                opacity: 0;
+            }
+        }
+
+        @-webkit-keyframes color {
+            55% {
+                background-color: #000022;
+            }
+
+            57% {
+                background-color: #000022;
+            }
+
+            95% {
+                background-color: #000022;
+            }
+        }
+
+        @keyframes color {
+            55% {
+                background-color: #000022;
+            }
+
+            57% {
+                background-color: #000022;
+            }
+
+            95% {
+                background-color: #000022;
+            }
+        }
+
+        .hidden {
+            opacity: 0;
+        }
+    </style>
 </head>
-<body>
- 
-<div id='candy'>
-  <div id='candy-loader'></div>
-</div>
-<div class="card hidden" id="card">
-<div class="inside">
-    <p style="font-size: 4rem;border-bottom: 10px dotted white;">Merry Christmas</p>
-    <p style="font-size: 1rem;padding-top:2rem;" id="back-message">Love, Doodle</p>
 
-</div>    
-<div class="outside">
-    <div class="front">
-        <div class="front-message">
-             <p>To: <span id="front-message">Mom & Dad</span><br/><br/>I hope you have a very...</p>
-        </div>
-       
+<body>
+    <audio id="music" class="hidden" loop>
+        <source src="music.mp3" type="audio/mp3">
+    </audio>
+    <div id="play" style="display:flex;justify-content: center;align-items: center; height: 100vh;">
+        <h1>Tap to Play</h1>
     </div>
-    <script> document.getElementById('front-message').innerHTML= new URLSearchParams(location.search).get('to') || '' </script>
-    <script> setTimeout(()=>{
-        document.getElementById('candy')?.classList.add('hidden')
-        document.getElementById('candy-loader')?.classList.add('hidden')
-        document.getElementById('card')?.classList.remove('hidden')
-    }, 8_000)</script>
-    <div class="back"></div>
-</div>
-</div>
+    <div class="card hidden" id="card">
+        <div class="inside">
+            <p style="font-size: 4rem;border-bottom: 10px dotted white;">Merry Christmas</p>
+            <p style="font-size: 1rem;padding-top:2rem;" id="back-message">Love, Doodle</p>
+
+        </div>
+
+        <div class="outside">
+            <div class="front">
+                <div class="front-message">
+                    <p>To: <span id="front-message">Mom & Dad</span><br /><br />I hope you have a very...</p>
+                </div>
+
+            </div>
+            <script> document.getElementById('front-message').innerHTML = new URLSearchParams(location.search).get('to') || '' </script>
+            <script>
+                let firstRun = false;
+                document.body.addEventListener('click', () => {
+                    if(firstRun) return
+                    document.getElementById('play').remove()
+                    document.getElementById('music')?.play()
+                    firstRun = true
+                    if (!document.getElementById('candy')) {
+                        const loader = document.createElement('div')
+                        loader.id = 'candy'
+                        loader.innerHTML = '<div id="candy-loader"></div>'
+                        document.body.append(loader)
+                        setTimeout(() => {
+                            document.getElementById('candy').remove()
+                            document.getElementById('card')?.classList.remove('hidden')
+                        }, 8_000)
+                    }
+                    document.getElementById('card').addEventListener('click', () => {
+                        const card = document.getElementById('card')
+                        if (card.classList.contains('card-hover')) {
+                            card.classList.remove('card-hover')
+                        } else {
+                            card.classList.add('card-hover')
+                        }
+                    })
+                })
+            </script>
+
+
+            <div class="back"></div>
+
+        </div>
+    </div>
 </body>
+
 </html>
