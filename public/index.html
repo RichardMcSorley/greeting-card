@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>3D Santa Card</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+     <style>
+        *,
+        *:before,
+        *:after{
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            background-color: #000022;
+            font-family: 'Parisienne', cursive;
+            color: white;
+        }
+        .card{
+            height: 400px;
+            width: 570px;
+            position: absolute;
+            margin: auto;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            cursor: pointer;
+            transition: 2s;
+            scale: 2;
+            -webkit-perspective: 1200px;
+                perspective: 1200px;
+                transform: translateX(-10%);
+        }
+        .card:hover{
+            transform: rotate(-5deg) translateX(-15%);
+        }
+        .card:hover .outside{
+            transform: rotateY(-130deg);
+        }
+        .outside{
+            height: 100%;
+            width: 50%;
+            position: absolute;
+            left: 50.1%;
+            -webkit-transform-style: preserve-3d;
+                transform-style: preserve-3d;
+            transition: 2s;
+            transform-origin: left;
+        }
+        .front,.back{
+            height: 100%;
+            width: 100%;
+            position: absolute;  
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            /*hide backface in firefox*/
+            transform: rotateX(0deg);   
+        }
+        .front{
+            background-color: #BE0F04;
+            z-index: 1;
+            background: url('front.png') #BE0F04;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: -200px 0 0 0;
+        }
+     
+        .back{
+            background: linear-gradient(
+                to right,
+                #BE0F04 50%,
+                #7d0b03
+            );
+            transform: rotateY(180deg);
+        }
+        .inside{
+            height: 100%;
+            width: 50%;
+            position: absolute;
+            left: 50%;
+            background: linear-gradient(
+                to left,
+                #BE0F04 50%,
+                #7d0b03
+            );
+            
+
+            font-size: 70px;
+            text-align: center;
+            padding: 2rem 2rem;
+            box-shadow: 25px 25px 35px rgba(0,0,0,0.3);
+        }
+        #front-message {
+            display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: flex-end;
+    height: 100%;
+    padding-bottom: 2rem;
+    max-width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+        }
+     </style>
+</head>
+<body>
+<div class="card">
+<div class="inside">
+    <p style="font-size: 4rem;border-bottom: 10px dotted white;">Merry Christmas</p>
+    <p style="font-size: 1rem;padding-top:2rem;" id="back-message">From Doodle</p>
+
+</div>    
+<div class="outside">
+    <div class="front">
+        <p id="front-message">To: Mom<br/><br/>  I hope you have a very...</p>
+    </div>
+    <div class="back"></div>
+</div>
+</div>
+</body>
+</html>
